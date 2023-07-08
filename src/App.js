@@ -1,10 +1,11 @@
 import { useState } from "react";
 import Header from "./components/Header/Header";
-import ResultTable from "./components/ResultTable/ResultTable";
+import ResultsTable from "./components/ResultsTable/ResultsTable";
 import UserInput from "./components/UserInput/UserInput";
 
 function App() {
   const [userInput, setUserInput] = useState(null);
+
   const calculateHandler = (userInput) => {
     setUserInput(userInput);
   };
@@ -35,11 +36,13 @@ function App() {
 
       <UserInput onCalculate={calculateHandler} />
 
-      {!userInput && <p>Sem investimentos calculados ainda.</p>}
-      {UserInput && (
-        <ResultTable
+      {!userInput && (
+        <p style={{ textAlign: "center" }}>Sem investimentos para calcular.</p>
+      )}
+      {userInput && (
+        <ResultsTable
           data={yearlyData}
-          initialInvestment={userInput["current-saving"]}
+          initialInvestment={userInput["current-savings"]}
         />
       )}
     </div>

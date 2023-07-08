@@ -1,4 +1,5 @@
 import { useState } from "react";
+import classes from "./UserInput.module.css";
 
 const initialUserInput = {
   "current-savings": 10000,
@@ -24,16 +25,16 @@ const UserInput = (props) => {
     setUserInput((prevInput) => {
       return {
         ...prevInput,
-        [input]: value,
+        [input]: +value,
       };
     });
   };
 
   return (
-    <form onSubmit={submitHandler} className="form">
-      <div className="input-group">
+    <form onSubmit={submitHandler} className={classes.form}>
+      <div className={classes["input-group"]}>
         <p>
-          <label htmlFor="current-savings">Economia atual (R$)</label>
+          <label htmlFor="current-savings">Rendimento Atual (R$)</label>
           <input
             onChange={(event) =>
               inputChangeHandler("current-savings", event.target.value)
@@ -44,7 +45,7 @@ const UserInput = (props) => {
           />
         </p>
         <p>
-          <label htmlFor="yearly-contribution">Economia anual ($)</label>
+          <label htmlFor="yearly-contribution">Rendimento Anual (R$)</label>
           <input
             onChange={(event) =>
               inputChangeHandler("yearly-contribution", event.target.value)
@@ -55,9 +56,11 @@ const UserInput = (props) => {
           />
         </p>
       </div>
-      <div className="input-group">
+      <div className={classes["input-group"]}>
         <p>
-          <label htmlFor="expected-return">Juros esperados (%, por ano)</label>
+          <label htmlFor="expected-return">
+            Expectativa de Ganho (%, por ano)
+          </label>
           <input
             onChange={(event) =>
               inputChangeHandler("expected-return", event.target.value)
@@ -68,7 +71,7 @@ const UserInput = (props) => {
           />
         </p>
         <p>
-          <label htmlFor="duration">Duração do investimento (anos)</label>
+          <label htmlFor="duration">Duração do Investimento (anos)</label>
           <input
             onChange={(event) =>
               inputChangeHandler("duration", event.target.value)
@@ -79,11 +82,15 @@ const UserInput = (props) => {
           />
         </p>
       </div>
-      <p className="actions">
-        <button onClick={resetHandler} type="reset" className="buttonAlt">
+      <p className={classes.actions}>
+        <button
+          onClick={resetHandler}
+          type="reset"
+          className={classes.buttonAlt}
+        >
           Apagar
         </button>
-        <button type="submit" className="button">
+        <button type="submit" className={classes.button}>
           Calcular
         </button>
       </p>
